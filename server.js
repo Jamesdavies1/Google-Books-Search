@@ -1,9 +1,13 @@
 const express = require("express");
-
 const mongoose = require("mongoose");
-const routes = require("./routes");
+// const routes = require("./routes");
+const { findAll } = require("./controllers/googleAPI");
+
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+// Create the connection to our mongo server
+require("./database")();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -11,15 +15,9 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-app.use(routes);
+app.get("/test", findAll);
 
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://<dbuser>:<dbpassword>@ds115420.mlab.com:15420/james--google-books-homework",
-  {
-    useCreateIndex: true,
-    useNewUrlParser: true
-  }
-);
+// app.use(routes);
 
 app.listen(PORT, () =>
   console.log(`API Server now listening on PORT ${PORT}!`)
