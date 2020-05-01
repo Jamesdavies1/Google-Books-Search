@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const db_url = `mongodb://<dbuser>:<dbpassword>@ds115420.mlab.com:15420/james--google-books-homework`;
+const db_url = `mongodb+srv://user:user@mycluster-i5mnv.mongodb.net/books?retryWrites=true&w=majority`;
 
 const createConnection = () => {
   try {
@@ -9,8 +9,8 @@ const createConnection = () => {
       useUnifiedTopology: true
     });
 
-    mongoose.connection.once('open', () => {
-      console.log('[database]: is connected to MongoDB');
+    mongoose.connection.once("open", () => {
+      console.log("[database]: is connected to MongoDB");
     });
   } catch (error) {
     console.log(error);
