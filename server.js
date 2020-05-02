@@ -22,6 +22,10 @@ if (process.env.NODE_ENV === "production") {
 app.use("/api/books", booksRoute);
 app.use("/api/search", searchRoute);
 
+app.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
+
 app.listen(PORT, () =>
   console.log(`API Server now listening on PORT ${PORT}!`)
 );
