@@ -8,7 +8,6 @@ function App() {
   return (
     <Router>
       <div>
-        <Navigation />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/saved" component={Saved} />

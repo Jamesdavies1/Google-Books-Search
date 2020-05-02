@@ -1,0 +1,18 @@
+body {
+  background-color: lightslategray
+}
+
+.navbar {
+  background-color: lightslategray;
+  width: 100%;
+}
+
+.navbar-brand {
+  color: white;
+  font-size: 5ch
+}
+
+.nav-link {
+  color: white;
+  font-size: 3ch
+}

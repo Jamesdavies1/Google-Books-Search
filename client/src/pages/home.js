@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+
+import "../../src/style.css";
+import Books from "../components/books";
+import Navigation from "../components/nav";
+
+const formatBooks = books =>
+  books.map(({ id, volumeInfo }) => ({ googleID: id, ...volumeInfo }));
 
 function Home() {
+  const [books, updateBooks] = useState([]);
+  const [searchCriteria, updateCriteria] = useState("");
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    axios
+      .get("http://localhost:3001/api/search", {
+        params: {
+          q: searchCriteria
+        }
+      })
+      .then(({ data }) => {
+        const formattedBooks = formatBooks(data);
+        updateBooks(formattedBooks);
+      });
+  };
+
   return (
     <div>
+      <Navigation />
+
       <div className="jumbotron jumbotron-fluid">
         <div className="container">
           <h1 className="display-4">google books!</h1>
@@ -11,23 +39,26 @@ function Home() {
           </p>
         </div>
       </div>
-      <form>
+      <form onSubmit={e => handleSubmit(e)}>
         <div className="form-group">
-          <label for="exampleInputEmail1">Search book here</label>
+          <label htmlFor="input">Search book here</label>
           <input
             type="input"
             className="form-control"
-            id="exampleInputEmail1"
+            id="input"
             aria-describedby="emailHelp"
+            value={searchCriteria}
+            onChange={e => updateCriteria(e.target.value)}
           />
-          <small id="emailHelp" className="form-text text-muted">
+          <small id="input-help" className="form-text text-muted">
             Lets find your favourite book!
           </small>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" role="submit">
           Submit
         </button>
       </form>
+      {books && <Books books={books} />}
     </div>
   );
 }

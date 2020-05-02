@@ -4,6 +4,7 @@ const makeRequest = require("../utils/makeRequest");
 const checkBookIntegrity = books => {
   return books.filter(
     book =>
+      book.id &&
       book.volumeInfo.title &&
       book.volumeInfo.infoLink &&
       book.volumeInfo.authors &&
@@ -21,7 +22,7 @@ const filterDuplicates = (newBooks, existingBooks) =>
   );
 
 module.exports = {
-  findAll: function(req, res) {
+  searchByParam: function(req, res) {
     const { query: params } = req;
 
     makeRequest("https://www.googleapis.com/books/v1/volumes", params)
