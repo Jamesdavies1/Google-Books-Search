@@ -4,7 +4,7 @@ import axios from "axios";
 import "./book.css";
 
 const Book = ({
-  book: { title, authors, description, imageLinks, infoLink, id }
+  book: { title, authors, description, imageLinks, infoLink, googleID }
 }) => (
   <div className="card">
     <div className="card-header">{title}</div>
@@ -22,7 +22,7 @@ const Book = ({
         className="save"
         onClick={() => {
           axios.post("http://localhost:3001/api/books", {
-            googleID: id,
+            googleID,
             title,
             authors,
             description

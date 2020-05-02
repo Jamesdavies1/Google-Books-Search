@@ -14,7 +14,10 @@ module.exports = {
   create: function(req, res) {
     db.Book.create(req.body)
       .then(dbBook => res.json(dbBook))
-      .catch(err => res.status(422).json(err));
+      .catch(err => {
+        console.log("i am the body", req.body);
+        res.status(422).json(err);
+      });
   },
   update: function(req, res) {
     db.Book.findOneAndUpdate({ id: req.params.id }, req.body)

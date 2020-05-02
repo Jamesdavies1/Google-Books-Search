@@ -8,13 +8,11 @@ import Navigation from "../components/nav";
 function SavedBooks() {
   const [books, updateBooks] = useState([]);
 
-  useEffect(
-    () =>
-      axios
-        .get("http://localhost:3001/api/books")
-        .then(savedBooks => updateBooks(savedBooks)),
-    []
-  );
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/api/books")
+      .then(savedBooks => updateBooks(savedBooks));
+  }, []);
 
   return (
     <div>
@@ -25,6 +23,7 @@ function SavedBooks() {
           <p className="lead">Here are your saved books</p>
         </div>
       </div>
+      {books && <Books books={books} />}{" "}
     </div>
   );
 }

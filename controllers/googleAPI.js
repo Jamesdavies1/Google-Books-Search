@@ -24,7 +24,6 @@ const filterDuplicates = (newBooks, existingBooks) =>
 module.exports = {
   searchByParam: function(req, res) {
     const { query: params } = req;
-
     makeRequest("https://www.googleapis.com/books/v1/volumes", params)
       .then(({ data: { items: books } }) => checkBookIntegrity(books))
       .then(newBooks =>
