@@ -16,6 +16,7 @@ module.exports = {
       .then(dbBook => res.json(dbBook))
       .catch(err => {
         console.log("i am the body", req.body);
+        console.log("i AM THE ERR:", err);
         res.status(422).json(err);
       });
   },
@@ -25,8 +26,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
-    db.Book.findById(req.params.id)
-      .then(dbBook => dbBook.remove())
+    db.Book.findByIdAndRemove(req.query.id)
       .then(dbBook => res.json(dbBook))
       .catch(err => res.status(422).json(err));
   }

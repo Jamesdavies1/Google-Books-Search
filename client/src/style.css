@@ -16,3 +16,7 @@ body {
   color: white;
   font-size: 3ch
 }
+
+.form-group {
+  background-color: white;
+}

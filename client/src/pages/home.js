@@ -6,7 +6,21 @@ import Books from "../components/books";
 import Navigation from "../components/nav";
 
 const formatBooks = books =>
-  books.map(({ id, volumeInfo }) => ({ googleID: id, ...volumeInfo }));
+  books.map(
+    ({
+      id,
+      volumeInfo: {
+        imageLinks: { thumbnail }
+      },
+      volumeInfo
+    }) => {
+      return {
+        googleID: id,
+        thumbnail,
+        ...volumeInfo
+      };
+    }
+  );
 
 function Home() {
   const [books, updateBooks] = useState([]);
@@ -58,7 +72,7 @@ function Home() {
           Submit
         </button>
       </form>
-      {books && <Books books={books} />}
+      {books && <Books books={books} location="home" />}
     </div>
   );
 }
