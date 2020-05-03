@@ -47,30 +47,30 @@ function Home() {
 
       <div className="jumbotron jumbotron-fluid">
         <div className="container">
-          <h1 className="display-4">google books!</h1>
-          <p className="lead">
+          <img
+            src="https://www.knowerstech.com/wp-content/uploads/2017/01/google-book.png"
+            className="large-google-logo"
+          />{" "}
+          <p className="lead sub-title-hp">
             Find your favourite books using the google book API
           </p>
         </div>
       </div>
-      <form onSubmit={e => handleSubmit(e)}>
+      <form onSubmit={e => handleSubmit(e)} className="hp-form">
         <div className="form-group">
-          <label htmlFor="input">Search book here</label>
           <input
+            placeholder="Search for books here"
             type="input"
-            className="form-control"
+            className="user-input"
             id="input"
             aria-describedby="emailHelp"
             value={searchCriteria}
             onChange={e => updateCriteria(e.target.value)}
           />
-          <small id="input-help" className="form-text text-muted">
-            Lets find your favourite book!
-          </small>
+          <button type="submit" className="submit-button" role="submit">
+            FIND BOOKS
+          </button>
         </div>
-        <button type="submit" className="btn btn-primary" role="submit">
-          Submit
-        </button>
       </form>
       {books && <Books books={books} location="home" />}
     </div>

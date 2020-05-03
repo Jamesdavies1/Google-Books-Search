@@ -21,8 +21,11 @@ function SavedBooks() {
       <Navigation />
       <div className="jumbotron jumbotron-fluid">
         <div className="container">
-          <h1 className="display-4">google books!</h1>
-          <p className="lead">Here are your saved books</p>
+          <img
+            src="https://www.knowerstech.com/wp-content/uploads/2017/01/google-book.png"
+            className="large-google-logo"
+          />{" "}
+          <p className="lead sub-title-hp">Here are your saved books!</p>
         </div>
       </div>
       {books.length > 0 && (
