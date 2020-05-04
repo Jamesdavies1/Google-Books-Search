@@ -30,7 +30,7 @@ function Home() {
     e.preventDefault();
 
     axios
-      .get("http://localhost:3001/api/search", {
+      .get("/api/search", {
         params: {
           q: searchCriteria
         }

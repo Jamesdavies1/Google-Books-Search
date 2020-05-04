@@ -10,7 +10,7 @@ function SavedBooks() {
   const [refresh, updateRefresh] = useState(false);
 
   useEffect(() => {
-    axios.get("http://localhost:3001/api/books").then(({ data }) => {
+    axios.get("/api/books").then(({ data }) => {
       updateBooks(data);
       updateRefresh(false);
     });

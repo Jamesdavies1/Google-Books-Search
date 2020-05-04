@@ -21,7 +21,7 @@ const Book = ({
             className="save-delete-button"
             onClick={() => {
               axios.post(
-                "http://localhost:3001/api/books",
+                "/api/books",
                 {
                   googleID,
                   title,
@@ -42,7 +42,7 @@ const Book = ({
             onClick={() => {
               axios
                 .delete(
-                  "http://localhost:3001/api/books",
+                  "/api/books",
                   {
                     params: {
                       id: _id
