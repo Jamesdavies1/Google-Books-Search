@@ -20,14 +20,18 @@ const Book = ({
           <button
             className="save-delete-button"
             onClick={() => {
-              axios.post("http://localhost:3001/api/books", {
-                googleID,
-                title,
-                authors,
-                description,
-                thumbnail,
-                link: infoLink
-              });
+              axios.post(
+                "http://localhost:3001/api/books",
+                {
+                  googleID,
+                  title,
+                  authors,
+                  description,
+                  thumbnail,
+                  link: infoLink
+                },
+                alert("Book now saved.")
+              );
             }}
           >
             Save For Later
@@ -37,11 +41,15 @@ const Book = ({
             className="save-delete-button"
             onClick={() => {
               axios
-                .delete("http://localhost:3001/api/books", {
-                  params: {
-                    id: _id
-                  }
-                })
+                .delete(
+                  "http://localhost:3001/api/books",
+                  {
+                    params: {
+                      id: _id
+                    }
+                  },
+                  alert("Book now removed.")
+                )
                 .then(() => refresh());
             }}
           >
